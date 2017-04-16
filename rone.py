@@ -9,4 +9,4 @@ print(''.join([str(x) for x in asset_list]))
 
 for asset in asset_list:
     asset.download_latest()
-    print("Difference?: " + str(asset.compare_cksum()))
+    print("Same file?: " + str(asset.compare_cksum()))

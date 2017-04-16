@@ -41,8 +41,8 @@ class Asset():
         """
         print("Downloading: " + self.filename)
         if download_name is None:
-            download_name = self.filename + "_TEMP" + str(datetime.datetime.now())
-        
+            temp_name = "_TEMP" + str(datetime.datetime.now()).replace(" ","")
+            download_name = self.filename + temp_name        
         self.local_filename, self.headers = urllib.request.urlretrieve(self.url, download_name)
 
         # Make sure that the returned filename matches the expected name
@@ -64,6 +64,8 @@ class Asset():
         old_cksum = get_cksum(os.path.join(self.asset_path, self.filename))
         print("New file: " + self.local_filename)
         new_cksum = get_cksum(self.local_filename)
+        print("Old cksum: " + old_cksum)
+        print("New cksum: " + new_cksum)
         return old_cksum==new_cksum
 
 asset_list = []
